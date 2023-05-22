@@ -1,23 +1,34 @@
 class Ledger {
-    constructor (transaction, amount) {
+    constructor (transaction) {
         this.transaction = transaction
         this.ledger = []
-        this.amount = 0
     }
 
     recordDepositTransaction(amount) {
         this.amount = amount
         const add = this.transaction.deposit(amount)
-        this.ledger.push(`${this.amount} || ${add}`)
+        this.ledger.push(`Deposit ${this.amount} || Balance ${add}`)
     } 
 
     recordWithdrawTransaction(amount) {
         this.amount = amount
-        const add = this.transaction.withdraw(amount)
-        this.ledger.push(`${this.amount} || ${add}`)
+        const minus = this.transaction.withdraw(amount)
+        this.ledger.push(`Withdraw ${this.amount} || Balance ${minus}`)
     } 
 
     printLedger() {
         return this.ledger
     } 
 }
+
+module.exports = Ledger
+
+
+const Transaction = require('./transaction');
+
+const transaction = new Transaction();
+const ledger = new Ledger(transaction);
+
+ledger.recordDepositTransaction(100);
+ledger.recordWithdrawTransaction(50);
+console.log(ledger.printLedger());

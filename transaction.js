@@ -4,11 +4,11 @@ class Transactions {
     };
 
     deposit(add) {
-        return this.balance + add
+        return this.balance += add
     }
 
     withdraw(minus) {
-        return this.balance - minus
+        return this.balance -= minus
     }
 }
 
